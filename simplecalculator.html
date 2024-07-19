@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Simple Calculator</title>
+     <script>
+         function onlyNumberkey(evt) {
+             var charCode = (evt.which) ? evt.which : evt.keyCode;
+             if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                 return false;
+             }
+             return true;
+         }
+
+         function getNumbers() {
+             var num1 = parseFloat(document.getElementById('num1').value);
+             var num2 = parseFloat(document.getElementById('num2').value);
+             return [num1, num2];
+         }
+
+         function add() {
+             var [num1, num2] = getNumbers();
+             document.getElementById('result').value = num1 + num2;
+         }
+
+         function sub() {
+             var [num1, num2] = getNumbers();
+             document.getElementById('result').value = num1 - num2;
+         }
+
+         function mult() {
+             var [num1, num2] = getNumbers();
+             document.getElementById('result').value = num1 * num2;
+         }
+
+         function div() {
+             var [num1, num2] = getNumbers();
+             if (num2 !== 0) {
+                 document.getElementById('result').value = num1 / num2;
+             } else {
+                 document.getElementById('result').value = "Cannot divide by zero";
+             }
+         }
+     </script>
+</head>
+<body>
+   <label for="num1">Enter 1st number:</label> 
+   <input type="text" id="num1" onkeypress="return onlyNumberkey(event)" placeholder="Enter 1st number"><br><br> 
+   <label for="num2">Enter 2nd number:</label>
+   <input type="text" id="num2" onkeypress="return onlyNumberkey(event)" placeholder="Enter 2nd number"><br><br>
+   <label for="result">Result:</label>
+   <input type="text" id="result" readonly><br><br>
+   <button onclick="add()">+</button> &nbsp;
+   <button onclick="sub()">-</button> &nbsp;
+   <button onclick="mult()">*</button> &nbsp;
+   <button onclick="div()">/</button> 
+</body>
+</html>
